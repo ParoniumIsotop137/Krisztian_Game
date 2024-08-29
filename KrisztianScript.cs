@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class KrisztianScript : MonoBehaviour
@@ -8,13 +7,11 @@ public class KrisztianScript : MonoBehaviour
     public Vector2 maxBounds;
     public Vector3 newPosition;
     public Rigidbody2D kriszbody;
-    public Boolean isWall;
 
     // Start is called before the first frame update
     void Start()
     {
         CalculateBounds();
-        isWall = false;
     }
 
     void CalculateBounds()
@@ -38,61 +35,36 @@ public class KrisztianScript : MonoBehaviour
     void Update()
     {
 
+
+        HandleMovement();
+        calculatePosition();
+
+
+    }
+
+    public void HandleMovement()
+    {
         newPosition = transform.position;
 
+
+
+        // Bewegung nur durchführen, wenn keine Kollision mit der Wand besteht
         if (Input.GetKey(KeyCode.W))
         {
-            if (!isWall)
-            {
-                moveUp();
-            }
-            else
-            {
-                newDirection();
-            }
-
-
+            moveUp();
         }
         else if (Input.GetKey(KeyCode.S))
         {
-            if (!isWall)
-            {
-                moveDown();
-            }
-            else
-            {
-                newDirection();
-            }
-
-
+            moveDown();
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            if (!isWall)
-            {
-                moveRigth();
-            }
-            else
-            {
-                newDirection();
-            }
-
-
+            moveRight();
         }
         else if (Input.GetKey(KeyCode.A))
         {
-            if (!isWall)
-            {
-                moveLeft();
-            }
-            else
-            {
-                newDirection();
-            }
-
+            moveLeft();
         }
-        calculatePosition();
-
 
     }
 
@@ -110,7 +82,7 @@ public class KrisztianScript : MonoBehaviour
         newPosition += Vector3.left * Time.deltaTime * speed;
     }
 
-    public void moveRigth()
+    public void moveRight()
     {
         newPosition += Vector3.right * Time.deltaTime * speed;
     }
@@ -125,51 +97,9 @@ public class KrisztianScript : MonoBehaviour
         newPosition += Vector3.up * Time.deltaTime * speed;
     }
 
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("cnc_static") && Input.GetKey(KeyCode.D))
-        {
-            isWall = true;
-            newDirection();
-            Debug.Log("Kollosion");
-        }
-        else if (collision.gameObject.CompareTag("vent_static") && Input.GetKey(KeyCode.D))
-        {
-
-            isWall = true;
-            newDirection();
-            Debug.Log("Kollosion");
-        }
-
-    }
-
-    public void newDirection()
-    {
-        if (Input.GetKey(KeyCode.W))
-        {
-            isWall = false;
-            Update();
-
-
-        }
-        else if (Input.GetKey(KeyCode.S))
-        {
-            isWall = false;
-            Update();
-
-
-        }
-        else if (Input.GetKey(KeyCode.A))
-        {
-            isWall = false;
-            Update();
-
-
-        }
-
-
-    }
 }
+
+
 
 
 
