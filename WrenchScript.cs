@@ -18,16 +18,20 @@ public class WrenchScript : MonoBehaviour
             targetDirection = (player.transform.position - transform.position).normalized;
         }
         wrenchRb.velocity = targetDirection * speed;
-        Destroy(gameObject, 5f);
+
 
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (gameObject != null)
+        {
 
-        //transform.Translate(targetDirection * speed * Time.deltaTime);
-        transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime);
+            transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime);
+        }
+
+
 
     }
     public void OnCollisionEnter2D(Collision2D collision)
@@ -37,12 +41,19 @@ public class WrenchScript : MonoBehaviour
         {
             Debug.Log("Spieler getroffen!");
 
+
             Destroy(gameObject);
+
+
         }
         else if (collision.gameObject.CompareTag("cnc_static") || collision.gameObject.CompareTag("vent_static"))
         {
 
             Destroy(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject, 20f);
         }
 
 

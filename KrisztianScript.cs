@@ -97,7 +97,12 @@ public class KrisztianScript : MonoBehaviour
         newPosition += Vector3.up * Time.deltaTime * speed;
     }
 
+
+
+
 }
+
+
 
 
 
