@@ -39,9 +39,7 @@ public class WrenchScript : MonoBehaviour
 
         if (collision.gameObject.CompareTag("krisztian"))
         {
-            Debug.Log("Spieler getroffen!");
-
-
+            Debug.Log("Az isten bassza meg!");
             Destroy(gameObject);
 
 

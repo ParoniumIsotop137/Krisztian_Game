@@ -11,6 +11,15 @@ public class KrisztianScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        kriszbody = GetComponent<Rigidbody2D>(); // Zugriff auf Rigidbody2D des Spielers
+
+        if (kriszbody == null)
+        {
+            Debug.LogError("Rigidbody2D-Komponente fehlt am Spieler!");
+        }
+
+
         CalculateBounds();
     }
 
@@ -37,65 +46,61 @@ public class KrisztianScript : MonoBehaviour
 
 
         HandleMovement();
-        calculatePosition();
 
 
     }
 
     public void HandleMovement()
     {
-        newPosition = transform.position;
+        Vector2 movement = Vector2.zero;
 
-
-
-        // Bewegung nur durchführen, wenn keine Kollision mit der Wand besteht
+        // Bewegung basierend auf Input steuern
         if (Input.GetKey(KeyCode.W))
         {
-            moveUp();
+            movement = Vector2.up; // Bewegt den Spieler nach oben
         }
         else if (Input.GetKey(KeyCode.S))
         {
-            moveDown();
+            movement = Vector2.down; // Bewegt den Spieler nach unten
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            moveRight();
+            movement = Vector2.right; // Bewegt den Spieler nach rechts
         }
         else if (Input.GetKey(KeyCode.A))
         {
-            moveLeft();
+            movement = Vector2.left; // Bewegt den Spieler nach links
         }
 
+        // Bewegungsgeschwindigkeit setzen
+        kriszbody.velocity = movement * speed;
+
+        // Begrenzung der Position innerhalb der Kamera-Ansicht
+        kriszbody.position = new Vector2(
+            Mathf.Clamp(kriszbody.position.x, minBounds.x, maxBounds.x),
+            Mathf.Clamp(kriszbody.position.y, minBounds.y, maxBounds.y)
+        );
+
     }
 
-    public void calculatePosition()
+
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        newPosition.x = Mathf.Clamp(newPosition.x, minBounds.x, maxBounds.x);
-        newPosition.y = Mathf.Clamp(newPosition.y, minBounds.y, maxBounds.y);
+        // Logik bei Kollisionen, z.B. mit einem Projektil
+        if (collision.gameObject.CompareTag("kulcs_prefab"))
+        {
 
 
-        transform.position = newPosition;
+            // Spieler-Physik zurücksetzen
+            kriszbody.velocity = Vector2.zero; // Geschwindigkeit auf null setzen
+
+            // Spieler-Steuerung wiederherstellen
+            kriszbody.constraints = RigidbodyConstraints2D.None;
+            kriszbody.constraints = RigidbodyConstraints2D.FreezeRotation; // Nur Rotation auf Z einfrieren
+        }
     }
 
-    public void moveLeft()
-    {
-        newPosition += Vector3.left * Time.deltaTime * speed;
-    }
 
-    public void moveRight()
-    {
-        newPosition += Vector3.right * Time.deltaTime * speed;
-    }
-
-    public void moveDown()
-    {
-        newPosition += Vector3.down * Time.deltaTime * speed;
-    }
-
-    public void moveUp()
-    {
-        newPosition += Vector3.up * Time.deltaTime * speed;
-    }
 
 
 
