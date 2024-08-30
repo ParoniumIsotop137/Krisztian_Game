@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class KrisztianScript : MonoBehaviour
@@ -8,13 +7,20 @@ public class KrisztianScript : MonoBehaviour
     public Vector2 maxBounds;
     public Vector3 newPosition;
     public Rigidbody2D kriszbody;
-    public Boolean isWall;
 
     // Start is called before the first frame update
     void Start()
     {
+
+        kriszbody = GetComponent<Rigidbody2D>(); // Zugriff auf Rigidbody2D des Spielers
+
+        if (kriszbody == null)
+        {
+            Debug.LogError("Rigidbody2D-Komponente fehlt am Spieler!");
+        }
+
+
         CalculateBounds();
-        isWall = false;
     }
 
     void CalculateBounds()
@@ -38,138 +44,72 @@ public class KrisztianScript : MonoBehaviour
     void Update()
     {
 
-        newPosition = transform.position;
 
+        HandleMovement();
+
+
+    }
+
+    public void HandleMovement()
+    {
+        Vector2 movement = Vector2.zero;
+
+        // Bewegung basierend auf Input steuern
         if (Input.GetKey(KeyCode.W))
         {
-            if (!isWall)
-            {
-                moveUp();
-            }
-            else
-            {
-                newDirection();
-            }
-
-
+            movement = Vector2.up; // Bewegt den Spieler nach oben
         }
         else if (Input.GetKey(KeyCode.S))
         {
-            if (!isWall)
-            {
-                moveDown();
-            }
-            else
-            {
-                newDirection();
-            }
-
-
+            movement = Vector2.down; // Bewegt den Spieler nach unten
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            if (!isWall)
-            {
-                moveRigth();
-            }
-            else
-            {
-                newDirection();
-            }
-
-
+            movement = Vector2.right; // Bewegt den Spieler nach rechts
         }
         else if (Input.GetKey(KeyCode.A))
         {
-            if (!isWall)
-            {
-                moveLeft();
-            }
-            else
-            {
-                newDirection();
-            }
-
+            movement = Vector2.left; // Bewegt den Spieler nach links
         }
-        calculatePosition();
 
+        // Bewegungsgeschwindigkeit setzen
+        kriszbody.velocity = movement * speed;
+
+        // Begrenzung der Position innerhalb der Kamera-Ansicht
+        kriszbody.position = new Vector2(
+            Mathf.Clamp(kriszbody.position.x, minBounds.x, maxBounds.x),
+            Mathf.Clamp(kriszbody.position.y, minBounds.y, maxBounds.y)
+        );
 
     }
 
-    public void calculatePosition()
+
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        newPosition.x = Mathf.Clamp(newPosition.x, minBounds.x, maxBounds.x);
-        newPosition.y = Mathf.Clamp(newPosition.y, minBounds.y, maxBounds.y);
-
-
-        transform.position = newPosition;
-    }
-
-    public void moveLeft()
-    {
-        newPosition += Vector3.left * Time.deltaTime * speed;
-    }
-
-    public void moveRigth()
-    {
-        newPosition += Vector3.right * Time.deltaTime * speed;
-    }
-
-    public void moveDown()
-    {
-        newPosition += Vector3.down * Time.deltaTime * speed;
-    }
-
-    public void moveUp()
-    {
-        newPosition += Vector3.up * Time.deltaTime * speed;
-    }
-
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("cnc_static") && Input.GetKey(KeyCode.D))
-        {
-            isWall = true;
-            newDirection();
-            Debug.Log("Kollosion");
-        }
-        else if (collision.gameObject.CompareTag("vent_static") && Input.GetKey(KeyCode.D))
+        // Logik bei Kollisionen, z.B. mit einem Projektil
+        if (collision.gameObject.CompareTag("kulcs_prefab"))
         {
 
-            isWall = true;
-            newDirection();
-            Debug.Log("Kollosion");
-        }
 
+            // Spieler-Physik zurücksetzen
+            kriszbody.velocity = Vector2.zero; // Geschwindigkeit auf null setzen
+
+            // Spieler-Steuerung wiederherstellen
+            kriszbody.constraints = RigidbodyConstraints2D.None;
+            kriszbody.constraints = RigidbodyConstraints2D.FreezeRotation; // Nur Rotation auf Z einfrieren
+        }
     }
 
-    public void newDirection()
-    {
-        if (Input.GetKey(KeyCode.W))
-        {
-            isWall = false;
-            Update();
 
 
-        }
-        else if (Input.GetKey(KeyCode.S))
-        {
-            isWall = false;
-            Update();
 
 
-        }
-        else if (Input.GetKey(KeyCode.A))
-        {
-            isWall = false;
-            Update();
 
-
-        }
-
-
-    }
 }
+
+
+
+
 
 
 
