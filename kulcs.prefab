@@ -166,3 +166,4 @@ MonoBehaviour:
   player: {fileID: 0}
   rotationSpeed: 360
   wrenchRb: {fileID: 2245360155776083356}
+  explosionPrefab: {fileID: 6044430247514437963, guid: 79fd06d9fd5af2449aba75b478a2d4e5, type: 3}

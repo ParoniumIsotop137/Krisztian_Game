@@ -7,6 +7,7 @@ public class WrenchScript : MonoBehaviour
     public GameObject player;
     public float rotationSpeed = 400f;
     public Rigidbody2D wrenchRb;
+    public GameObject explosionPrefab;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,20 +41,28 @@ public class WrenchScript : MonoBehaviour
         if (collision.gameObject.CompareTag("krisztian"))
         {
             Debug.Log("Az isten bassza meg!");
+            Explosion();
             Destroy(gameObject);
 
 
         }
         else if (collision.gameObject.CompareTag("cnc_static") || collision.gameObject.CompareTag("vent_static"))
         {
-
+            Explosion();
             Destroy(gameObject);
         }
         else
         {
+            Explosion();
             Destroy(gameObject, 20f);
         }
 
 
+    }
+
+    public void Explosion()
+    {
+        GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+        Destroy(explosion, 2f);
     }
 }

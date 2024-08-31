@@ -9,7 +9,7 @@ public class BossScript : MonoBehaviour
     public Rigidbody2D bossRb;
 
     public GameObject wrenchPrefab;
-    public float shootInterval = 4f; // Zeitintervall zwischen den Würfen
+    public float shootInterval = 3f; // Zeitintervall zwischen den Würfen
     public float shootTimer;
 
     // Start is called before the first frame update
