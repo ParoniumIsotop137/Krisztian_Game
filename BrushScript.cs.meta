@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: de643d073fd47574c83485e85b644995
+guid: 24b8638005cf0fc42ba81c27bcd4219a
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - bossRb: {instanceID: 0}
-  - wrenchPrefab: {fileID: 1330564818462370805, guid: 76f6cfbbe0176e048b6249acebdab04c, type: 3}
+  - brushRb: {instanceID: 0}
+  - explosionPrefab: {fileID: 6044430247514437963, guid: 79fd06d9fd5af2449aba75b478a2d4e5, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
