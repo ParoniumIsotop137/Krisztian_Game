@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1330564818462370805
+--- !u!1 &7965256845235495603
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,40 +8,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2684514576094894984}
-  - component: {fileID: 922728597133273578}
-  - component: {fileID: 2245360155776083356}
-  - component: {fileID: 3489230856984405348}
-  - component: {fileID: 2190072395934974184}
+  - component: {fileID: 9081979578293383246}
+  - component: {fileID: 7027480664234623447}
+  - component: {fileID: 7095769144005109104}
+  - component: {fileID: 5785841691252092090}
+  - component: {fileID: 2740655641099817948}
   m_Layer: 0
-  m_Name: kulcs
-  m_TagString: kulcs_prefab
+  m_Name: drotkefe
+  m_TagString: drotkefe_tag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2684514576094894984
+--- !u!4 &9081979578293383246
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1330564818462370805}
+  m_GameObject: {fileID: 7965256845235495603}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.12, y: 0.49, z: -0.017017923}
+  m_LocalPosition: {x: -20.93, y: -7.98, z: -0.0292575}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &922728597133273578
+--- !u!212 &7027480664234623447
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1330564818462370805}
+  m_GameObject: {fileID: 7965256845235495603}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -76,25 +76,25 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 086c27784ce4e75438e600af67f4a46a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6323341990b4f3c4d920bc38606e5557, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 8.81, y: 2.04}
+  m_Size: {x: 7.8, y: 1.99}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &2245360155776083356
+--- !u!50 &7095769144005109104
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1330564818462370805}
+  m_GameObject: {fileID: 7965256845235495603}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -102,7 +102,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -114,13 +114,13 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!70 &3489230856984405348
+--- !u!70 &5785841691252092090
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1330564818462370805}
+  m_GameObject: {fileID: 7965256845235495603}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -147,24 +147,21 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 8.8, y: 1}
+  m_Size: {x: 8.1, y: 2.1}
   m_Direction: 0
---- !u!114 &2190072395934974184
+--- !u!114 &2740655641099817948
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1330564818462370805}
+  m_GameObject: {fileID: 7965256845235495603}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5769202a79770c49b669c1086990da2, type: 3}
+  m_Script: {fileID: 11500000, guid: 24b8638005cf0fc42ba81c27bcd4219a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  targetDirection: {x: 0, y: 0}
-  player: {fileID: 0}
-  rotationSpeed: 360
-  wrenchRb: {fileID: 2245360155776083356}
+  speed: 12
+  rotationSpeed: 400
+  brushRb: {fileID: 7095769144005109104}
   explosionPrefab: {fileID: 6044430247514437963, guid: 79fd06d9fd5af2449aba75b478a2d4e5, type: 3}
-  krisztianScript: {fileID: 0}

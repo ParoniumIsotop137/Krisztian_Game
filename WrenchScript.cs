@@ -8,14 +8,17 @@ public class WrenchScript : MonoBehaviour
     public float rotationSpeed = 400f;
     public Rigidbody2D wrenchRb;
     public GameObject explosionPrefab;
+    public KrisztianScript krisztianScript;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("krisztian");
         wrenchRb = GetComponent<Rigidbody2D>();
 
+
         if (player != null)
         {
+            krisztianScript = krisztianScript = player.GetComponent<KrisztianScript>();
             targetDirection = (player.transform.position - transform.position).normalized;
         }
         wrenchRb.velocity = targetDirection * speed;
@@ -40,7 +43,8 @@ public class WrenchScript : MonoBehaviour
 
         if (collision.gameObject.CompareTag("krisztian"))
         {
-            Debug.Log("Az isten bassza meg!");
+            krisztianScript.RemoveScore(1);
+            Debug.Log("Életerõ: " + krisztianScript.getPlayerScore());
             Explosion();
             Destroy(gameObject);
 
@@ -51,10 +55,15 @@ public class WrenchScript : MonoBehaviour
             Explosion();
             Destroy(gameObject);
         }
+        else if (collision.gameObject.CompareTag("drotkefe_tag"))
+        {
+
+            Destroy(gameObject, 2f);
+        }
         else
         {
-            Explosion();
-            Destroy(gameObject, 20f);
+
+            Destroy(gameObject, 8f);
         }
 
 

@@ -3,7 +3,9 @@ guid: 47befc50e744e0a4c85ae03be86d2b8c
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - kriszbody: {instanceID: 0}
+  - brushPrefab: {fileID: 7965256845235495603, guid: 4c9043bb0686761488b544a33dd59015, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

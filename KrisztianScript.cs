@@ -7,11 +7,14 @@ public class KrisztianScript : MonoBehaviour
     public Vector2 maxBounds;
     public Vector3 newPosition;
     public Rigidbody2D kriszbody;
+    public GameObject brushPrefab;
+    public int playerScore;
+    public GameObject bigExplosion;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        playerScore = 10;
         kriszbody = GetComponent<Rigidbody2D>(); // Zugriff auf Rigidbody2D des Spielers
 
         if (kriszbody == null)
@@ -46,8 +49,21 @@ public class KrisztianScript : MonoBehaviour
 
 
         HandleMovement();
+        handleShooting();
 
+    }
 
+    public void handleShooting()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            shootBrush();
+        }
+    }
+
+    public void shootBrush()
+    {
+        Instantiate(brushPrefab, transform.position, Quaternion.identity);
     }
 
     public void HandleMovement()
@@ -99,12 +115,34 @@ public class KrisztianScript : MonoBehaviour
             kriszbody.constraints = RigidbodyConstraints2D.FreezeRotation; // Nur Rotation auf Z einfrieren
         }
     }
+    public int getPlayerScore()
+    {
+        return this.playerScore;
+    }
 
+    public void AddScore(int score)
+    {
+        this.playerScore += score;
+    }
+    public void RemoveScore(int score)
+    {
+        if (this.playerScore > 0)
+        {
+            this.playerScore -= score;
+        }
 
+        if (this.playerScore == 0)
+        {
+            GameOver();
+        }
+    }
 
-
-
-
+    public void GameOver()
+    {
+        GameObject explosion = Instantiate(bigExplosion, transform.position, Quaternion.identity);
+        Destroy(gameObject);
+        Destroy(explosion, 1f);
+    }
 }
 
 

@@ -11,12 +11,15 @@ public class BossScript : MonoBehaviour
     public GameObject wrenchPrefab;
     public float shootInterval = 3f; // Zeitintervall zwischen den Würfen
     public float shootTimer;
+    public GameObject player;
+    public int bossScore;
 
     // Start is called before the first frame update
     void Start()
     {
         bossRb = GetComponent<Rigidbody2D>();
-
+        player = GameObject.FindGameObjectWithTag("krisztian");
+        bossScore = 15;
         if (bossRb == null)
         {
             Debug.LogError("Rigidbody2D-Komponente fehlt am Gegner!");
@@ -31,7 +34,11 @@ public class BossScript : MonoBehaviour
     void Update()
     {
         moveBoss();
-        handleShooting();
+        if (player != null)
+        {
+            handleShooting();
+        }
+
     }
 
     void handleShooting()
@@ -98,5 +105,26 @@ public class BossScript : MonoBehaviour
     {
         speed = Random.Range(3, 12);
     }
+    public int getBossScore()
+    {
+        return this.bossScore;
+    }
 
+    public void RemoveBossScore(int bossScore)
+    {
+        if (this.bossScore > 0)
+        {
+            this.bossScore -= bossScore;
+        }
+        if (this.bossScore == 0)
+        {
+            playerWon();
+        }
+
+    }
+
+    public void playerWon()
+    {
+
+    }
 }
