@@ -2,15 +2,19 @@ using UnityEngine;
 
 public class BrushScript : MonoBehaviour
 {
-    public float speed = 12f;
+    public float speed = 15f;
     public float rotationSpeed = 400f;
     public Rigidbody2D brushRb;
     public GameObject explosionPrefab;
     private Vector2 targetDirection;
+    public KrisztianScript krisztianScript;
+    public GameObject player;
     // Start is called before the first frame update
     void Start()
     {
         brushRb = GetComponent<Rigidbody2D>();
+        player = GameObject.FindGameObjectWithTag("krisztian");
+        krisztianScript = player.GetComponent<KrisztianScript>();
 
         // Überprüfen, ob Rigidbody2D korrekt zugewiesen ist
         if (brushRb == null)
@@ -36,27 +40,29 @@ public class BrushScript : MonoBehaviour
             Debug.LogWarning("Kein Boss-Objekt gefunden!");
             targetDirection = Vector2.right; // Fallback-Richtung, falls kein Boss vorhanden ist
         }
+        //brushRb.velocity = targetDirection * speed;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (gameObject != null)
+        if (gameObject != null && krisztianScript.getShootingStatus())
         {
             // Bewege die Drahtbürste in Richtung des Ziels
             brushRb.velocity = targetDirection * speed;
 
+
             // Rotieren der Drahtbürste
             transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime);
         }
-    }
 
+    }
     public void OnCollisionEnter2D(Collision2D collision)
     {
 
         if (collision.gameObject.CompareTag("boss_tag"))
         {
-            Debug.Log("Ez az!");
+
             Explosion();
             Destroy(gameObject);
 

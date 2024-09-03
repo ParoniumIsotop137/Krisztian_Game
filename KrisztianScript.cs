@@ -10,13 +10,15 @@ public class KrisztianScript : MonoBehaviour
     public GameObject brushPrefab;
     public int playerScore;
     public GameObject bigExplosion;
+    public GameObject boss;
+    public bool isOnShooting = false;
 
     // Start is called before the first frame update
     void Start()
     {
         playerScore = 10;
         kriszbody = GetComponent<Rigidbody2D>(); // Zugriff auf Rigidbody2D des Spielers
-
+        boss = GameObject.FindGameObjectWithTag("boss_tag");
         if (kriszbody == null)
         {
             Debug.LogError("Rigidbody2D-Komponente fehlt am Spieler!");
@@ -57,13 +59,18 @@ public class KrisztianScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            isOnShooting = true;
             shootBrush();
         }
     }
 
     public void shootBrush()
     {
-        Instantiate(brushPrefab, transform.position, Quaternion.identity);
+        if (boss != null)
+        {
+            Instantiate(brushPrefab, transform.position, Quaternion.identity);
+        }
+
     }
 
     public void HandleMovement()
@@ -135,6 +142,14 @@ public class KrisztianScript : MonoBehaviour
         {
             GameOver();
         }
+    }
+    public bool getShootingStatus()
+    {
+        return isOnShooting;
+    }
+    public void setShootingStatus(bool check)
+    {
+        this.isOnShooting = check;
     }
 
     public void GameOver()
