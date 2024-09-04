@@ -408,6 +408,7 @@ MonoBehaviour:
   shootTimer: 0
   player: {fileID: 2082991301}
   bossScore: 0
+  krisztianScript: {fileID: 0}
 --- !u!50 &115214872
 Rigidbody2D:
   serializedVersion: 4
@@ -1495,6 +1496,8 @@ MonoBehaviour:
   brushPrefab: {fileID: 7965256845235495603, guid: 4c9043bb0686761488b544a33dd59015, type: 3}
   playerScore: 0
   bigExplosion: {fileID: 1638438438}
+  boss: {fileID: 0}
+  isOnShooting: 0
 --- !u!61 &2082991305
 BoxCollider2D:
   m_ObjectHideFlags: 0
