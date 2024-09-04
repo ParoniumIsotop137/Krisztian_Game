@@ -9,11 +9,12 @@ public class BossScript : MonoBehaviour
     public Rigidbody2D bossRb;
     public GameObject bigExplosion;
     public GameObject wrenchPrefab;
-    public float shootInterval = 3f; // Zeitintervall zwischen den Würfen
+    public float shootInterval = 1.5f; // Zeitintervall zwischen den Würfen
     public float shootTimer;
     public GameObject player;
     public int bossScore;
     public KrisztianScript krisztianScript;
+    public GameObject winnerScreen;
 
     // Start is called before the first frame update
     void Start()
@@ -119,7 +120,7 @@ public class BossScript : MonoBehaviour
 
     void setSpeed()
     {
-        speed = Random.Range(5, 17);
+        speed = Random.Range(8, 17);
     }
     public int getBossScore()
     {
@@ -153,5 +154,6 @@ public class BossScript : MonoBehaviour
         Destroy(gameObject);
         Destroy(explosion, 1f);
         krisztianScript.setShootingStatus(false);
+        winnerScreen.SetActive(true);
     }
 }

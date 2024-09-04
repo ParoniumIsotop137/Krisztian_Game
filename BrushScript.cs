@@ -68,7 +68,7 @@ public class BrushScript : MonoBehaviour
 
 
         }
-        else if (collision.gameObject.CompareTag("cnc_static") || collision.gameObject.CompareTag("vent_static"))
+        else if (collision.gameObject.CompareTag("cnc_static") || collision.gameObject.CompareTag("vent_static") || collision.gameObject.CompareTag("rohr_tag"))
         {
             Explosion();
             Destroy(gameObject);

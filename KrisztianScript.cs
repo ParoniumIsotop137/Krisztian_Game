@@ -12,11 +12,12 @@ public class KrisztianScript : MonoBehaviour
     public GameObject bigExplosion;
     public GameObject boss;
     public bool isOnShooting = false;
+    public GameObject GameOverScreen;
 
     // Start is called before the first frame update
     void Start()
     {
-        playerScore = 10;
+        playerScore = 5;
         kriszbody = GetComponent<Rigidbody2D>(); // Zugriff auf Rigidbody2D des Spielers
         boss = GameObject.FindGameObjectWithTag("boss_tag");
         if (kriszbody == null)
@@ -157,6 +158,7 @@ public class KrisztianScript : MonoBehaviour
         GameObject explosion = Instantiate(bigExplosion, transform.position, Quaternion.identity);
         Destroy(gameObject);
         Destroy(explosion, 1f);
+        GameOverScreen.SetActive(true);
     }
 }
 
