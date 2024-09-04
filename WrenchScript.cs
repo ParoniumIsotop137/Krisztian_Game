@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class WrenchScript : MonoBehaviour
 {
-    public float speed = 12f;
+    public float speed = 15f;
     public Vector2 targetDirection;
     public GameObject player;
     public float rotationSpeed = 400f;
@@ -50,7 +50,7 @@ public class WrenchScript : MonoBehaviour
 
 
         }
-        else if (collision.gameObject.CompareTag("cnc_static") || collision.gameObject.CompareTag("vent_static"))
+        else if (collision.gameObject.CompareTag("cnc_static") || collision.gameObject.CompareTag("vent_static") || collision.gameObject.CompareTag("rohr_tag"))
         {
             Explosion();
             Destroy(gameObject);
