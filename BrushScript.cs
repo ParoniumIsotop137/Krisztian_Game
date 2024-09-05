@@ -76,7 +76,8 @@ public class BrushScript : MonoBehaviour
         else if (collision.gameObject.CompareTag("kulcs_prefab"))
         {
 
-            Destroy(gameObject, 2f);
+            Explosion();
+            Destroy(gameObject);
         }
         else
         {

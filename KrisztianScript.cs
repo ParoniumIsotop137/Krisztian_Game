@@ -13,6 +13,16 @@ public class KrisztianScript : MonoBehaviour
     public GameObject boss;
     public bool isOnShooting = false;
     public GameObject GameOverScreen;
+    public AudioManager audioManger;
+
+
+    public float delayBetweenSounds = 2f;
+
+    public void Awake()
+    {
+        audioManger = GameObject.FindGameObjectWithTag("audio_tag").GetComponent<AudioManager>();
+    }
+
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +30,8 @@ public class KrisztianScript : MonoBehaviour
         playerScore = 5;
         kriszbody = GetComponent<Rigidbody2D>(); // Zugriff auf Rigidbody2D des Spielers
         boss = GameObject.FindGameObjectWithTag("boss_tag");
+
+
         if (kriszbody == null)
         {
             Debug.LogError("Rigidbody2D-Komponente fehlt am Spieler!");
@@ -120,9 +132,16 @@ public class KrisztianScript : MonoBehaviour
 
             // Spieler-Steuerung wiederherstellen
             kriszbody.constraints = RigidbodyConstraints2D.None;
-            kriszbody.constraints = RigidbodyConstraints2D.FreezeRotation; // Nur Rotation auf Z einfrieren
+            kriszbody.constraints = RigidbodyConstraints2D.FreezeRotation;// Nur Rotation auf Z einfrieren
+            audioManger.playSound(audioManger.krisztianHit);
+
         }
     }
+
+
+
+
+
     public int getPlayerScore()
     {
         return this.playerScore;

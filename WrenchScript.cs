@@ -58,7 +58,8 @@ public class WrenchScript : MonoBehaviour
         else if (collision.gameObject.CompareTag("drotkefe_tag"))
         {
 
-            Destroy(gameObject, 2f);
+            Explosion();
+            Destroy(gameObject);
         }
         else
         {
