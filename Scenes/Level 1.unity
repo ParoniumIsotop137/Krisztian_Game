@@ -3257,6 +3257,10 @@ MonoBehaviour:
   krugBody: {fileID: 1656218930}
   bierKrugPrefab: {fileID: 1656218926}
   spawnInterval: 15
+  timer: 0
+  player: {fileID: 2082991301}
+  krisztianScript: {fileID: 0}
+  beerRenderer: {fileID: 0}
 --- !u!1 &1871250251
 GameObject:
   m_ObjectHideFlags: 0
