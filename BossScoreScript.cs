@@ -25,4 +25,6 @@ public class BossScoreScript : MonoBehaviour
     {
         UpdateScoreText();
     }
+
+
 }

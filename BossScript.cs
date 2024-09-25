@@ -143,8 +143,14 @@ public class BossScript : MonoBehaviour
         if (this.bossScore == 0)
         {
             playerWon();
+            audioManger.playSound(audioManger.laughing);
         }
 
+    }
+
+    public void addScore(int score)
+    {
+        this.bossScore += score;
     }
 
 

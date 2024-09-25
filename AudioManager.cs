@@ -6,6 +6,9 @@ public class AudioManager : MonoBehaviour
     public AudioClip bossHit;
     public AudioClip krisztianHit;
     public AudioClip doStop;
+    public AudioClip drinking;
+    public AudioClip laughing;
+    public AudioClip exploSound;
     public float soundInterval = 40f;
     public float soundTimer;
 

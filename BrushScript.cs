@@ -9,7 +9,13 @@ public class BrushScript : MonoBehaviour
     private Vector2 targetDirection;
     public KrisztianScript krisztianScript;
     public GameObject player;
+    public AudioManager audioManger;
     // Start is called before the first frame update
+
+    public void Awake()
+    {
+        audioManger = GameObject.FindGameObjectWithTag("audio_tag").GetComponent<AudioManager>();
+    }
     void Start()
     {
         brushRb = GetComponent<Rigidbody2D>();
@@ -72,12 +78,14 @@ public class BrushScript : MonoBehaviour
         {
             Explosion();
             Destroy(gameObject);
+
         }
         else if (collision.gameObject.CompareTag("kulcs_prefab"))
         {
 
             Explosion();
             Destroy(gameObject);
+
         }
         else
         {
@@ -89,5 +97,6 @@ public class BrushScript : MonoBehaviour
     {
         GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
         Destroy(explosion, 2f);
+        audioManger.playSound(audioManger.exploSound);
     }
 }

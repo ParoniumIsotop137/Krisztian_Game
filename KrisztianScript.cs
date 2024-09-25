@@ -27,7 +27,7 @@ public class KrisztianScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerScore = 5;
+        playerScore = 3;
         kriszbody = GetComponent<Rigidbody2D>(); // Zugriff auf Rigidbody2D des Spielers
         boss = GameObject.FindGameObjectWithTag("boss_tag");
 
@@ -161,6 +161,7 @@ public class KrisztianScript : MonoBehaviour
         if (this.playerScore == 0)
         {
             GameOver();
+
         }
     }
     public bool getShootingStatus()
@@ -177,6 +178,7 @@ public class KrisztianScript : MonoBehaviour
         GameObject explosion = Instantiate(bigExplosion, transform.position, Quaternion.identity);
         Destroy(gameObject);
         Destroy(explosion, 1f);
+        audioManger.playSound(audioManger.exploSound);
         GameOverScreen.SetActive(true);
     }
 }

@@ -9,7 +9,13 @@ public class WrenchScript : MonoBehaviour
     public Rigidbody2D wrenchRb;
     public GameObject explosionPrefab;
     public KrisztianScript krisztianScript;
+    public AudioManager audioManger;
     // Start is called before the first frame update
+
+    public void Awake()
+    {
+        audioManger = GameObject.FindGameObjectWithTag("audio_tag").GetComponent<AudioManager>();
+    }
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("krisztian");
@@ -74,5 +80,6 @@ public class WrenchScript : MonoBehaviour
     {
         GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
         Destroy(explosion, 2f);
+        audioManger.playSound(audioManger.exploSound);
     }
 }

@@ -11,7 +11,15 @@ public class BierkrugSpawner : MonoBehaviour
     public GameObject player;           // Referenz zum Spieler
     public KrisztianScript krisztianScript;
     public Renderer beerRenderer;
+    public AudioManager audioManger;
+    public GameObject boss;
+    public BossScript bossScript;
 
+
+    public void Awake()
+    {
+        audioManger = GameObject.FindGameObjectWithTag("audio_tag").GetComponent<AudioManager>();
+    }
     void Start()
     {
         // Hole die Hauptkamera, um die sichtbaren Grenzen zu berechnen
@@ -19,6 +27,8 @@ public class BierkrugSpawner : MonoBehaviour
         timer = 0f;
         player = GameObject.FindGameObjectWithTag("krisztian");
         krisztianScript = player.GetComponent<KrisztianScript>();
+        boss = GameObject.FindGameObjectWithTag("boss_tag");
+        bossScript = boss.GetComponent<BossScript>();
         beerRenderer = bierKrugPrefab.GetComponent<Renderer>();
         beerRenderer.enabled = true;
 
@@ -64,8 +74,15 @@ public class BierkrugSpawner : MonoBehaviour
         if (collision.gameObject.CompareTag("krisztian"))
         {
             krisztianScript.AddScore(1);
+            audioManger.playSound(audioManger.drinking);
             beerRenderer.enabled = false;
 
+        }
+        else if (collision.gameObject.CompareTag("boss_tag"))
+        {
+            bossScript.addScore(1);
+            audioManger.playSound(audioManger.drinking);
+            beerRenderer.enabled = false;
         }
     }
 }
