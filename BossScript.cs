@@ -15,6 +15,12 @@ public class BossScript : MonoBehaviour
     public int bossScore;
     public KrisztianScript krisztianScript;
     public GameObject winnerScreen;
+    public AudioManager audioManger;
+
+    public void Awake()
+    {
+        audioManger = GameObject.FindGameObjectWithTag("audio_tag").GetComponent<AudioManager>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +28,7 @@ public class BossScript : MonoBehaviour
         bossRb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("krisztian");
         krisztianScript = player.GetComponent<KrisztianScript>();
+
 
         bossScore = 15;
         if (bossRb == null)
@@ -120,7 +127,7 @@ public class BossScript : MonoBehaviour
 
     void setSpeed()
     {
-        speed = Random.Range(8, 17);
+        speed = Random.Range(10, 20);
     }
     public int getBossScore()
     {
@@ -136,15 +143,26 @@ public class BossScript : MonoBehaviour
         if (this.bossScore == 0)
         {
             playerWon();
+            audioManger.playSound(audioManger.laughing);
         }
 
     }
+
+    public void addScore(int score)
+    {
+        this.bossScore += score;
+    }
+
+
+
     public void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("drotkefe_tag"))
         {
             RemoveBossScore(1);
-            Debug.Log("A fõnököt találat érte: " + this.bossScore);
+            audioManger.playSound(audioManger.bossHit);
+
+            //Debug.Log("A fõnököt találat érte: " + this.bossScore);
         }
     }
 
