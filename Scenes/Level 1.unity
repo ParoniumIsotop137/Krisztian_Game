@@ -750,7 +750,7 @@ MonoBehaviour:
   bossRb: {fileID: 115214872}
   bigExplosion: {fileID: 1638438438}
   wrenchPrefab: {fileID: 1330564818462370805, guid: 76f6cfbbe0176e048b6249acebdab04c, type: 3}
-  shootInterval: 2
+  shootInterval: 1.5
   shootTimer: 0
   player: {fileID: 2082991301}
   bossScore: 0
